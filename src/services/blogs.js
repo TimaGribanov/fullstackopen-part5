@@ -20,4 +20,28 @@ const newBlog = async (title, author, url, token) => {
   }
 }
 
-export default { getAll, newBlog }
+const editBlog = async (id, title, author, url, likes, token) => {
+  const body = {
+    "author": author,
+    "upvotes": likes,
+    "title": title,
+    "url": url
+  }
+
+  try {
+    const request = await axios.put(`${baseUrl}/${id}`, body, { headers: {"Authorization" : `Bearer ${token}`} })
+    return request
+  } catch (error) {
+    return error
+  }
+}
+
+const deleteBlog = async (id, token) => {
+  try {
+    return await axios.delete(`${baseUrl}/${id}`, { headers: {"Authorization" : `Bearer ${token}`} })
+  } catch (error) {
+    return error
+  }
+}
+
+export default { getAll, newBlog, editBlog, deleteBlog }
