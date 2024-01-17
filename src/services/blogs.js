@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 const baseUrl = 'http://localhost:3003/api/blogs'
 
 const getAll = () => {
@@ -8,13 +9,12 @@ const getAll = () => {
 
 const newBlog = async (title, author, url, token) => {
   const body = {
-    "author": author,
-    "title": title,
-    "url": url
+    'author': author,
+    'title': title,
+    'url': url
   }
   try {
-    const request = await axios.post(baseUrl, body, { headers: {"Authorization" : `Bearer ${token}`} })
-    return request
+    return await axios.post(baseUrl, body, { headers: { 'Authorization': `Bearer ${token}` } })
   } catch (error) {
     return error
   }
@@ -22,15 +22,14 @@ const newBlog = async (title, author, url, token) => {
 
 const editBlog = async (id, title, author, url, likes, token) => {
   const body = {
-    "author": author,
-    "upvotes": likes,
-    "title": title,
-    "url": url
+    'author': author,
+    'upvotes': likes,
+    'title': title,
+    'url': url
   }
 
   try {
-    const request = await axios.put(`${baseUrl}/${id}`, body, { headers: {"Authorization" : `Bearer ${token}`} })
-    return request
+    return await axios.put(`${baseUrl}/${id}`, body, { headers: { 'Authorization': `Bearer ${token}` } })
   } catch (error) {
     return error
   }
@@ -38,7 +37,7 @@ const editBlog = async (id, title, author, url, likes, token) => {
 
 const deleteBlog = async (id, token) => {
   try {
-    return await axios.delete(`${baseUrl}/${id}`, { headers: {"Authorization" : `Bearer ${token}`} })
+    return await axios.delete(`${baseUrl}/${id}`, { headers: { 'Authorization' : `Bearer ${token}` } })
   } catch (error) {
     return error
   }

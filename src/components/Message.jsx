@@ -1,9 +1,9 @@
 const Message = ({ message }) => {
   if (message === '') return null
   return (
-      <div className='info'>
-          {message}
-      </div>
+    <div className='info'>
+      {message}
+    </div>
   )
 }
 
