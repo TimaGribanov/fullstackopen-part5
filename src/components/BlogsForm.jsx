@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const BlogsForm = (props) => {
+const BlogsForm = ({ createBlog }) => {
   const [blogTitle, setBlogTitle] = useState('')
   const [blogAuthor, setBlogAuthor] = useState('')
   const [blogUrl, setBlogUrl] = useState('')
@@ -9,7 +9,7 @@ const BlogsForm = (props) => {
     event.preventDefault()
 
     try {
-      await props.handleNewBlog(blogTitle, blogAuthor, blogUrl)
+      await createBlog(blogTitle, blogAuthor, blogUrl)
 
       setBlogTitle('')
       setBlogAuthor('')
@@ -29,6 +29,7 @@ const BlogsForm = (props) => {
             type="text"
             value={blogTitle}
             name="Title"
+            placeholder="Enter the title"
             onChange={({ target }) => setBlogTitle(target.value)}
           />
         </div>
@@ -38,6 +39,7 @@ const BlogsForm = (props) => {
             type="text"
             value={blogAuthor}
             name="Author"
+            placeholder="Enter the author name"
             onChange={({ target }) => setBlogAuthor(target.value)}
           />
         </div>
@@ -47,6 +49,7 @@ const BlogsForm = (props) => {
             type="text"
             value={blogUrl}
             name="URL"
+            placeholder="Enter the URL"
             onChange={({ target }) => setBlogUrl(target.value)}
           />
         </div>
